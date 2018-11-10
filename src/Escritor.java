@@ -16,7 +16,7 @@ public class Escritor {
      * Constructor por defecto de la clase. Inicializa la salida estándar
      */
     public Escritor() {
-        // TODO - implement Escritor.Escriitor
+        salidaEstandar = System.out;
     }
 
     /**
@@ -25,7 +25,7 @@ public class Escritor {
      * @param linea Línea a escribir
      */
     public void escribirLinea(String linea) {
-        // TODO - implement Escritor.escribirLinea
+        salidaEstandar.println(linea);
     }
 
 }
