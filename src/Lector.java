@@ -16,7 +16,7 @@ public class Lector {
      * Constructor por defecto de la clase. Inicializa el flujo de entrada estándar
      */
     public Lector() {
-        // TODO - implement Lector.Lector
+        entradaEstandar = System.in;
     }
 
     /**
