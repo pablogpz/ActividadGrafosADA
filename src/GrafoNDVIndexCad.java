@@ -3,16 +3,15 @@ import java.util.ArrayList;
 /**
  * Clase que modela un grafo no dirigido valuado (con etiquetas positivas y que toman valores reales no negativos)
  * con indexación de cadenas en lugar de indexacion de enteros.
- * Permite asociar el nombre de las ciuades a los vértices del grafo
  *
  * @author Juan Pablo García Plaza Pérez - Jose Ángel Concha Carrasco
  */
 public class GrafoNDVIndexCad extends GrafoNDV {
 
     /**
-     * Colección de nombres de ciudades del mapa de carreteras. Permite establecer un índice numérico único a cada ciudad
+     * Colección cadenas. Permite establecer un índice numérico único a cada cadena
      */
-    private ArrayList<String> diccionarioCiudades;
+    private ArrayList<String> diccionarioCadenas;
 
     /**
      * Constructor parametrizado de la clase. Inicializa un grafo no dirigido y valuado con idexado por cadenas
@@ -28,10 +27,21 @@ public class GrafoNDVIndexCad extends GrafoNDV {
     /**
      * Añade el nombre de una ciudad a la lista de ciudades que se convertirán en vértices del grafo
      *
-     * @param nombreCiudad Nombre de la ciudad a registrar
+     * @param cadena Cadena con la que indexar un vértice
      */
-    public void añadirCiudad(String nombreCiudad) {
+    public void añadirVertice(String cadena) {
         // TODO - implement GrafoNDVIndexCad.añadirCiudad
+    }
+
+    /**
+     * Inserta un arco etiquetado
+     *
+     * @param vInicio Vértice inicial
+     * @param vFin    Vertice final
+     * @param valor   Etiqueta del arco
+     */
+    public void añadirArco(String vInicio, String vFin, float valor) {
+
     }
 
     /**
@@ -44,18 +54,18 @@ public class GrafoNDVIndexCad extends GrafoNDV {
 
     /**
      * @param indice Índice asociado a un vértice del grafo y una ciudad
-     * @return El nombre de la ciudad equivalente al índice indicado
+     * @return Cadena equivalente al índice indicado
      */
-    private String ciudadEquivalente(int indice) {
+    private String cacenaEquivalente(int indice) {
         // TODO - implement GrafoNDVIndexCad.ciudadEquivalente
         return null;
     }
 
     /**
-     * @param nombreCiudad Nombre de la ciudad mapeada a un vértice del grafo
-     * @return El índice numérico mapeado al nombre de una ciudad
+     * @param cadena Cadena mapeada a un vértice del grafo
+     * @return El índice numérico mapeado a una cadena
      */
-    private int indiceEquivalente(String nombreCiudad) {
+    private int indiceEquivalente(String cadena) {
         // TODO - implement GrafoNDVIndexCad.indiceEquivalente
         return 0;
     }
