@@ -3,13 +3,12 @@
  * Representa la matriz adyacencia tanto de grafos valuados como no valuados.Es de orden igual al número
  * de vértices del grafo.
  * <p>
- * El tipo genérico T representa el tipo de las celdas de la matriz de adyacencia asociada al grafo
  *
  * @author Juan Pablo García Plaza Pérez - Jose Ángel Concha Carrasco
  */
-public class MatrizAdyacencia<T> {
+public class MatrizAdyacencia {
 
-    private T[][] matrizAdy;
+    private float[][] matrizAdy;
 
     /**
      * Orden de la matriz. Número de nodos que puede alojar
@@ -30,7 +29,7 @@ public class MatrizAdyacencia<T> {
      *
      * @param valor Valor a insertar
      */
-    protected void modificarCelda(T valor) {
+    protected void modificarCelda(float valor) {
         // TODO - implement MatrizAdyacencia.modificarCelda
     }
 
@@ -39,9 +38,9 @@ public class MatrizAdyacencia<T> {
      * @param columna Columna de la matriz a seleccionar
      * @return Valor de la celda pedida
      */
-    protected T obtenerValorCelda(int fila, int columna) {
+    protected float obtenerValorCelda(int fila, int columna) {
         // TODO - implement MatrizAdyacencia.obtenerValorCelda
-        return null;
+        return 0;
     }
 
     /**
@@ -81,7 +80,7 @@ public class MatrizAdyacencia<T> {
     /**
      * @return La matriz de adyacencia
      */
-    public T[][] getMatrizAdy() {
+    public float[][] getMatrizAdy() {
         // TODO - implement MatrizAdyacencia.getMatrizAdy
         return null;
     }

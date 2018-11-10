@@ -1,11 +1,9 @@
 /**
  * Interfaz que define las operaciones fundamentales de cualquier grafo implementado mediante matriz de adyacencia.
- * <p>
- * El tipo genérico T representa el tipo de las celdas de la matriz de adyacencia asociada al grafo
  *
  * @author Juan Pablo García Plaza Pérez - Jose Ángel Concha Carrasco
  */
-public interface Grafo<T> {
+public interface Grafo {
 
     /**
      * Inicializa la estructura soporte del grafo
@@ -26,7 +24,7 @@ public interface Grafo<T> {
      * @param vFin    Vértice final del arco
      * @param valor   Valor de la etiqueta del arco, si debe existir
      */
-    void insertarArco(int vInicio, int vFin, T valor);
+    void insertarArco(int vInicio, int vFin, float valor);
 
     /**
      * Borra un vértice del grafo. Puede provocar el borrado de un arco si el vértice a borrar tiene un grado mayor que 0
@@ -56,7 +54,7 @@ public interface Grafo<T> {
     /**
      * @return Matriz de adyacencia del grafo
      */
-    T[][] arcos();
+    float[][] arcos();
 
     /**
      * @param vertice Vértice del que devolver sus adyacentes

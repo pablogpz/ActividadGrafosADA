@@ -1,11 +1,9 @@
 /**
  * Clase que modela un Grafo No Dirigido Valuado con indexado de vértices por enteros.
- * <p>
- * El tipo genérico T representa el tipo de las celdas de la matriz de adyacencia asociada al grafo
  *
  * @author Juan Pablo García Plaza Pérez - Jose Ángel Concha Carrasco
  */
-public class GrafoNDV<T> extends MatrizAdyacencia implements Grafo {
+public class GrafoNDV extends MatrizAdyacencia implements Grafo {
 
     /**
      * Constructor parametrizado de la clase. Instancia un grafo no dirigido valuado
@@ -28,7 +26,7 @@ public class GrafoNDV<T> extends MatrizAdyacencia implements Grafo {
     }
 
     @Override
-    public void insertarArco(int vInicio, int vFin, Object valor) {
+    public void insertarArco(int vInicio, int vFin, float valor) {
 
     }
 
@@ -53,8 +51,8 @@ public class GrafoNDV<T> extends MatrizAdyacencia implements Grafo {
     }
 
     @Override
-    public Object[][] arcos() {
-        return new Object[0][];
+    public float[][] arcos() {
+        return new float[0][];
     }
 
     @Override
