@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.io.InputStream;
 
 /**
@@ -20,19 +21,29 @@ public class Lector {
     }
 
     /**
-     * Lee un número de la entrada estándar
+     * @return Número leído del flujo de entrada estándar
      */
     public int leerNumero() {
-        // TODO - implement Lector.leerNumero
-        return 0;
+        return Integer.parseInt(leerLinea());
     }
 
     /**
-     * Lee una línea del flujo de entrada estándar
+     * @return Línea leída del flujo de entrada estándar
      */
     public String leerLinea() {
-        // TODO - implement Lector.leerLinea
-        return null;
+        int sigByte = -1;
+        StringBuilder sb = new StringBuilder();
+
+        do {
+            try {
+                sigByte = entradaEstandar.read();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            sb.append((char) sigByte);
+        } while (sigByte != '\n');
+
+        return sb.toString().trim();
     }
 
 }
