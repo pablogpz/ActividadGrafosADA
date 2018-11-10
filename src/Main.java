@@ -7,21 +7,12 @@
 public class Main {
 
     /**
-     * Lector del flujo de entrada estándar
-     */
-    private Lector lector;
-    /**
-     * Escritor del flujo de salida estándar
-     */
-    private Escritor escritor;
-
-    /**
      * TODO Documentar el algoritmo de cálculo de árboles de expansión mínimos
      *
      * @param grafoEntrada Grafo del que calcular su árbol de expasión mínimo
      * @return Árbol de expasión mínimo
      */
-    private GrafoNDVIndexCad calcularExpansionMinima(GrafoNDVIndexCad grafoEntrada) {
+    private static GrafoNDVIndexCad calcularExpansionMinima(GrafoNDVIndexCad grafoEntrada) {
         // TODO - implement Main.calcularExpansionMinima
         return null;
     }
@@ -33,12 +24,13 @@ public class Main {
      * @param cInicial     Nombre de la ciudad de partida
      * @param cFinal       Nombre de la ciudad de destino
      */
-    private void calcularMinimoCamino(GrafoNDVIndexCad grafoEntrada, String cInicial, String cFinal) {
+    private static void calcularMinimoCamino(GrafoNDVIndexCad grafoEntrada, String cInicial, String cFinal) {
         // TODO - implement Main.calcularMinimoCamino
     }
 
     public static void main(String[] args) {
-        // TODO - implement Main.main
+        Lector lector = new Lector();                           // Lector del flujo de entrada estándar
+        Escritor escritor = new Escritor();                     // Escritor del flujo de salida estándar
     }
 
 }
