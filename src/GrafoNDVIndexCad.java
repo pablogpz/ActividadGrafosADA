@@ -29,7 +29,7 @@ public class GrafoNDVIndexCad extends GrafoNDV {
      *
      * @param cadena Cadena con la que indexar un vértice
      */
-    public void añadirVertice(String cadena) {
+    public void insertarVertice(String cadena) {
         // TODO - implement GrafoNDVIndexCad.añadirCiudad
     }
 
@@ -40,8 +40,25 @@ public class GrafoNDVIndexCad extends GrafoNDV {
      * @param vFin    Vertice final
      * @param valor   Etiqueta del arco
      */
-    public void añadirArco(String vInicio, String vFin, float valor) {
+    public void insertarArco(String vInicio, String vFin, float valor) {
 
+    }
+
+    /**
+     * @param vInicio Vértice inicial
+     * @param vFin    Vértice final
+     * @return Valor de la etiqueta del arco que une dos vértices
+     */
+    public float obtenerValorArco(String vInicio, String vFin) {
+        return 0;
+    }
+
+    /**
+     * @param vertice Vértice del que obtener sus adyacentes
+     * @return Vértices adyacentes al vértice indicado
+     */
+    public int[] adyacentes(String vertice) {
+        return new int[0];
     }
 
     /**
