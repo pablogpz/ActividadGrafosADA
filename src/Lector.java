@@ -31,13 +31,13 @@ public class Lector {
      * @return Línea leída del flujo de entrada estándar
      */
     public String leerLinea() {
-        int sigByte = -1;
-        StringBuilder sb = new StringBuilder();
+        int sigByte = -1;                                   // Cada carácter de una línea del flujo
+        StringBuilder sb = new StringBuilder();             // Para generar la cadena de línea
 
-        do {
+        do {                                                // Lee una línea (Hasta que encuentra el caracter '\n')
             try {
                 sigByte = entradaEstandar.read();
-            } catch (IOException e) {
+            } catch (IOException e) {                       // Manejo de excepción de I/O
                 e.printStackTrace();
             }
             sb.append((char) sigByte);
