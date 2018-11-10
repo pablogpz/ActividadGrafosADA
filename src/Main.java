@@ -37,7 +37,7 @@ public class Main {
         int n;                                                  // Número de ciudades del mapa
         int d;                                                  // Número de carreteras del mapa
         int p;                                                  // Número de preguntas
-        String[] datos;                                         // Campos de la línea
+        String[][] preguntas;                                   // Campos de las preguntas sobre caminos mínimos
         GrafoNDVIndexCad mapaCarreteras;                        // Grafo del mapa de carreteras (vértices -> ciudades)
 
         // *** LECTURA DE DATOS ***
@@ -49,7 +49,7 @@ public class Main {
         }
 
         d = lector.leerNumero();                                // Lee el número de carreteras del mapa
-        // Datos de la línea: 2 ciudades y 1 distancia
+        String[] datos;                                         // Campos de la línea: 2 ciudades y 1 distancia
         for (int i = 0; i < d; i++) {
             datos = lector.leerLinea().split(" ");        // Divide la línea en sus campos
             // Inserta la ciudad en el mapa de carreteras
@@ -58,24 +58,26 @@ public class Main {
 
         // *** PROBLEMA 1 ***
 
-        p = lector.leerNumero();                                // Lee el número de preguntas acerca de caminos más cortos
+        p = lector.leerNumero();                                // Lee el número de preguntas acerca de caminos mínimos
+        preguntas = new String[p][];                            // Inicializa la matriz de preguntas
         // Datos de la línea: 2 ciudades
         for (int i = 0; i < p; i++) {
-            datos = lector.leerLinea().split(" ");        // Divide la línea en sus campos
+            preguntas[i] = lector.leerLinea().split(" "); // Divide la línea en sus campos
             // Calcula el camíno mínimo y lo escribe
-            escritor.escribirLinea(calcularMinimoCamino(mapaCarreteras, datos[0], datos[1]));
+            escritor.escribirLinea(calcularMinimoCamino(mapaCarreteras, preguntas[i][0], preguntas[i][1]));
         }
 
         // *** PROBLEMA 2 ***
 
         // Convierte el mapa de carreteras tal que todas las ciudades estén conectadas y el coste de repararlas sea mínimo
         mapaCarreteras = calcularExpansionMinima(mapaCarreteras);
+        escritor.escribirLinea("");                             // Nueva línea
+        // TODO Escribir el coste total de rehabilitación de carreteras
 
         // Calcula los caminos mínimos a partir del nuevo mapa de carreteras
         for (int i = 0; i < p; i++) {
-            datos = lector.leerLinea().split(" ");
             // Calcula el camíno mínimo y lo escribe
-            escritor.escribirLinea(calcularMinimoCamino(mapaCarreteras, datos[0], datos[1]));
+            escritor.escribirLinea(calcularMinimoCamino(mapaCarreteras, preguntas[i][0], preguntas[i][1]));
         }
     }
 
