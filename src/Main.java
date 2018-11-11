@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * Clase principal que contiene el punto de entrada al programa.
@@ -30,6 +31,7 @@ public class Main {
      */
     private static float calcularExpansionMinima(GrafoNDVIndexCad grafoEntrada,
                                                  GrafoNDVIndexCad grafoRes) {
+        float camino;                                           // Etiqueta mínima entre dos vértices
         float sumaEtiquetas = 0;                                // Suma total del valor de las etiquetas
         ArrayList<String> cjtoVertices = new ArrayList<>();     // Cjto de vértices del grafo resultado
         String[] verticesEntrada = grafoEntrada.verticesCadena();// Cjo de vértices del grafo de entrada
@@ -37,21 +39,27 @@ public class Main {
         String u;                                               // Vértice actual
         String v;                                               // Vértice adyacente
 
-        for (int i = 0; cjtoVertices.size() < verticesEntrada.length; i++) {
-            cjtoVertices.add(verticesEntrada[i]);               // Añade el vértice actual a los visitados
-            u = verticesEntrada[i];
-            adyacentes = grafoEntrada.adyacentes(cjtoVertices.get(i));// Obtiene sus adyacentes
+        cjtoVertices.add(verticesEntrada[0]);                   // Empieza por el primer vértice
+        Iterator<String> it = cjtoVertices.iterator();
+        while (cjtoVertices.size() < verticesEntrada.length) {
+            u = it.next();                                      // Actualiza el vértice actual
+            adyacentes = grafoEntrada.adyacentes(u);            // Obtiene sus adyacentes
 
-            String minimo = adyacentes[0];                      // Vértice final que hace el arco mínimo
-            for (int j = 1; j < adyacentes.length; j++) {       // Busca el camino mínimo con el vértice actual
-                v = adyacentes[j];
+            String minimo = null;                               // Vértice final que hace el arco mínimo
+            for (String adyacente : adyacentes) {               // Busca el camino mínimo con el vértice actual
+                v = adyacente;
+                if (!cjtoVertices.contains(v)) {
+                    camino = grafoEntrada.obtenerValorArco(u, v);
 
-                if (grafoEntrada.obtenerValorArco(u, v) > grafoEntrada.obtenerValorArco(u, minimo)) {
-                    minimo = v;                                 // Actualiza el vértice mínimo
+                    if (camino > grafoEntrada.obtenerValorArco(u, minimo))
+                        minimo = v;                                 // Actualiza el vértice mínimo
                 }
             }
+            camino = grafoEntrada.obtenerValorArco(u, minimo);  // Temporal del camino mínimo
 
-            sumaEtiquetas += grafoEntrada.obtenerValorArco(u, minimo);
+            grafoRes.insertarArco(u, minimo, camino);           // Añade el camino al grafo resultado
+            cjtoVertices.add(minimo);                           // Añade el vértice elegido a los visitados
+            sumaEtiquetas += camino;                            // Actualiza el acumulador
         }
 
         return sumaEtiquetas;
