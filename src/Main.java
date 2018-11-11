@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /**
  * Clase principal que contiene el punto de entrada al programa.
  * Encargada de manejar el flujo de ejecución del programa
@@ -28,7 +30,31 @@ public class Main {
      */
     private static float calcularExpansionMinima(GrafoNDVIndexCad grafoEntrada,
                                                  GrafoNDVIndexCad grafoRes) {
-        return 0;
+        float sumaEtiquetas = 0;                                // Suma total del valor de las etiquetas
+        ArrayList<String> cjtoVertices = new ArrayList<>();     // Cjto de vértices del grafo resultado
+        String[] verticesEntrada = grafoEntrada.verticesCadena();// Cjo de vértices del grafo de entrada
+        String[] adyacentes;                                    //Adyacentes a cada vértice seleccionado
+        String u;                                               // Vértice actual
+        String v;                                               // Vértice adyacente
+
+        for (int i = 0; cjtoVertices.size() < verticesEntrada.length; i++) {
+            cjtoVertices.add(verticesEntrada[i]);               // Añade el vértice actual a los visitados
+            u = verticesEntrada[i];
+            adyacentes = grafoEntrada.adyacentes(cjtoVertices.get(i));// Obtiene sus adyacentes
+
+            String minimo = adyacentes[0];                      // Vértice final que hace el arco mínimo
+            for (int j = 1; j < adyacentes.length; j++) {       // Busca el camino mínimo con el vértice actual
+                v = adyacentes[j];
+
+                if (grafoEntrada.obtenerValorArco(u, v) > grafoEntrada.obtenerValorArco(u, minimo)) {
+                    minimo = v;                                 // Actualiza el vértice mínimo
+                }
+            }
+
+            sumaEtiquetas += grafoEntrada.obtenerValorArco(u, minimo);
+        }
+
+        return sumaEtiquetas;
     }
 
     public static void main(String[] args) {
