@@ -7,11 +7,11 @@
  */
 public class MatrizAdyacencia {
 
-    private float[][] matrizAdy;                        // Matriz de adayacencia de números reales.
-    private int orden;                                  // Orden de la matriz: Número de nodos que puede alojar.
+    private float[][] matrizAdy;                                         // Matriz de adayacencia de números reales.
+    private int orden;                                                   // Orden de la matriz: Número de nodos que puede alojar.
 
-    protected static final float ELEMENTO_VACIO = -1;     // Indicador de que no hay camino.
-    protected static final float ELEMENTO_NULO = 0;       // Indicador de que no es posible trazar camino sobre sí mismo.
+    protected static final float ELEMENTO_VACIO = Integer.MAX_VALUE;     // Indicador de que no hay camino.
+    protected static final float ELEMENTO_NULO = 0;                      // Indicador de que no es posible trazar camino sobre sí mismo.
 
     /**
      * Constructor parametrizado de la clase. Inicializa la matriz con un orden dado.
@@ -19,10 +19,11 @@ public class MatrizAdyacencia {
      * @param orden Orden de la matriz a inicializar
      */
     public MatrizAdyacencia(int orden) {
-        matrizAdy = new float[orden][orden];            // Reserva de espacio para la matriz de orden 'orden'
+        this.orden = orden;                               // Guarda el orden
+        matrizAdy = new float[orden][orden];              // Reserva de espacio para la matriz de orden 'orden'
 
-        for (int i = 0; i < orden; i++) {               // Asignamos a todas las celdas el valor de ELEMENTO_VACIO,
-            for (int j = 0; j < orden; j++) {           // salvo a la diagonal principal de la matriz.
+        for (int i = 0; i < orden; i++) {                 // Asignamos a todas las celdas el valor de ELEMENTO_VACIO,
+            for (int j = 0; j < orden; j++) {             // salvo a la diagonal principal de la matriz.
                 if (i == j)
                     matrizAdy[i][j] = ELEMENTO_NULO;
                 else

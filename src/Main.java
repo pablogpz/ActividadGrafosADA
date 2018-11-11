@@ -17,9 +17,16 @@ public class Main {
      * @return Matriz de cierre transitivo
      */
     private static float[][] calcularCierreTransitivo(GrafoNDVIndexCad grafoEntrada, int[][] P) {
-        float[][] mCierreT = grafoEntrada.getMatrizAdy();       // Matriz de cierre transitivo
         int orden = grafoEntrada.getOrden();                    // Orden de la matriz de adyacencia del grafo
+        float[][] mCierreT = new float[orden][orden];           // Matriz de cierre transitivo
         float caminoNuevo;                                      // Longitud del camino formado por [i,k] y [k,j]
+
+        // Copia la matriz de adyacencia del grafo en 'mCierreT'
+        for (int i = 0; i < orden; i++) {
+            for (int j = 0; j < orden; j++) {
+                mCierreT[i][j] = grafoEntrada.getMatrizAdy()[i][j];
+            }
+        }
 
         for (int k = 0; k < orden; k++) {
             for (int i = 0; i < orden; i++) {
@@ -42,13 +49,23 @@ public class Main {
      *
      * @param mCierreT Matriz de cierre transitivo que ocntiene los caminos mínimos
      * @param P        Matriz de actualizaciones de la matriz de cierre transitivo
-     * @param cInicial Nombre de la ciudad de partida
-     * @param cFinal   Nombre de la ciudad de destino
+     * @param vInicial Vértice de partida
+     * @param vFinal   Vértice final
+     * @param g        Grafo del que proviene la matriz de cierre transitivo
      * @return Cadena con el recorrido más corto y su longitud
      */
-    private static String calcularMinimoCamino(float[][] mCierreT, int[][] P, String cInicial, String cFinal) {
-        // TODO - implement Main.calcularMinimoCamino
-        return null;
+    private static String calcularMinimoCamino(float[][] mCierreT, int[][] P, String vInicial, String vFinal,
+                                               GrafoNDVIndexCad g) {
+        StringBuilder sb = new StringBuilder();
+        int k = P[g.indiceEquivalente(vInicial)][g.indiceEquivalente(vFinal)];
+
+        if (k != 0) {
+            sb.append(calcularMinimoCamino(mCierreT, P, vInicial, g.cadenaEquivalente(k), g));
+            sb.append(g.cadenaEquivalente(k));
+            sb.append(calcularMinimoCamino(mCierreT, P, g.cadenaEquivalente(k), vFinal, g));
+        }
+
+        return sb.toString();
     }
 
     /**
@@ -63,7 +80,7 @@ public class Main {
         float camino;                                           // Etiqueta mínima entre dos vértices
         float sumaEtiquetas = 0;                                // Suma total del valor de las etiquetas
         ArrayList<String> cjtoVertices = new ArrayList<>();     // Cjto de vértices del grafo resultado
-        String[] verticesEntrada = grafoEntrada.verticesCadena();// Cjo de vértices del grafo de entrada
+        String[] verticesEntrada = grafoEntrada.verticesCadena();// Cjto de vértices del grafo de entrada
         String[] adyacentes;                                    //Adyacentes a cada vértice seleccionado
         String u;                                               // Vértice actual
         String v;                                               // Vértice adyacente
@@ -127,13 +144,14 @@ public class Main {
 
         p = lector.leerNumero();                                // Lee el número de preguntas acerca de caminos mínimos
         preguntas = new String[p][];                            // Inicializa la matriz de preguntas
-        P = new int[mapaCarreteras.getOrden()][];               // Inicializa la matriz P de actualizaciones
+        P = new int[mapaCarreteras.getOrden()][mapaCarreteras.getOrden()];// Inicializa la matriz P de actualizaciones
         mCierreT = calcularCierreTransitivo(mapaCarreteras, P); // Calcula la matriz de cierre transitivo del mapa
         // Datos de la línea: 2 ciudades
         for (int i = 0; i < p; i++) {
             preguntas[i] = lector.leerLinea().split(" "); // Divide la línea en sus campos
             // Calcula el camíno mínimo y lo escribe
-            escritor.escribirLinea(calcularMinimoCamino(mCierreT, P, preguntas[i][0], preguntas[i][1]));
+            escritor.escribirLinea(calcularMinimoCamino(mCierreT, P, preguntas[i][0], preguntas[i][1], mapaCarreteras) + " " +
+                    mCierreT[mapaCarreteras.indiceEquivalente(preguntas[i][0])][mapaCarreteras.indiceEquivalente(preguntas[i][1])]);
         }
         escritor.escribirLinea("");                             // Nueva línea
 
@@ -149,7 +167,7 @@ public class Main {
         // Calcula los caminos mínimos a partir del nuevo mapa de carreteras
         for (int i = 0; i < p; i++) {
             // Calcula el camíno mínimo y lo escribe
-            escritor.escribirLinea(calcularMinimoCamino(mCierreT, P, preguntas[i][0], preguntas[i][1]));
+            escritor.escribirLinea(calcularMinimoCamino(mCierreT, P, preguntas[i][0], preguntas[i][1], minimasCarreteras));
         }
     }
 

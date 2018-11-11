@@ -19,6 +19,7 @@ public class GrafoNDVIndexCad extends GrafoNDV {
      */
     public GrafoNDVIndexCad(int nVerticesInic) {
         super(nVerticesInic);
+        diccionarioCadenas = new ArrayList<>();
     }
 
     /**
