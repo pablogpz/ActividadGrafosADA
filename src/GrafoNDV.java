@@ -3,7 +3,7 @@ import java.util.ArrayList;
 /**
  * Clase que modela un Grafo No Dirigido Valuado con indexado de vértices por enteros.
  *
- * @author Juan Pablo García Plaza Pérez - Jose Ángel Concha Carrasco
+ * @author Juan Pablo García Plaza Pérez - José Ángel Concha Carrasco
  */
 public class GrafoNDV extends MatrizAdyacencia implements Grafo {
 
@@ -37,6 +37,18 @@ public class GrafoNDV extends MatrizAdyacencia implements Grafo {
     public void insertarArco(int vInicio, int vFin, float valor) {
         modificarCelda(vInicio, vFin, valor);
         modificarCelda(vFin, vInicio, valor);                           // Se insertan de forma simétrica
+    }
+
+    /**
+     * Devuelve el valor del arco formado por ambos vértices.
+     *
+     * @param vInicio Vértice inicial del arco
+     * @param vFin    Vértice final del arco
+     * @return el valor del arco
+     */
+    @Override
+    public float obtenerArco(int vInicio, int vFin) {
+        return obtenerValorCelda(vInicio, vFin);
     }
 
     /**
