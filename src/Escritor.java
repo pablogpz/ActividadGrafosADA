@@ -3,7 +3,7 @@ import java.io.PrintStream;
 /**
  * Clase que implementa una serie de operaciones de escritura en el flujo estándar
  *
- * @author Juan Pablo García Plaza Pérez - Jose Ángel Concha Carrasco
+ * @author Juan Pablo García Plaza Pérez - José Ángel Concha Carrasco
  */
 public class Escritor {
 

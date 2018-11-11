@@ -3,7 +3,7 @@
  * Representa la matriz adyacencia tanto de grafos valuados como no valuados.
  * Es de orden igual al número de vértices del grafo <p>.
  *
- * @author Juan Pablo García Plaza Pérez - Jose Ángel Concha Carrasco
+ * @author Juan Pablo García Plaza Pérez - José Ángel Concha Carrasco
  */
 public class MatrizAdyacencia {
 

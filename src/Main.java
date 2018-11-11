@@ -5,7 +5,7 @@ import java.util.Iterator;
  * Clase principal que contiene el punto de entrada al programa.
  * Encargada de manejar el flujo de ejecución del programa
  *
- * @author Juan Pablo García Plaza Pérez - Jose Ángel Concha Carrasco
+ * @author Juan Pablo García Plaza Pérez - José Ángel Concha Carrasco
  */
 public class Main {
 

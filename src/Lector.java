@@ -4,7 +4,7 @@ import java.io.InputStream;
 /**
  * Clase que implementa una serie de operaciones de lectura del flujo estándar
  *
- * @author Juan Pablo García Plaza Pérez - Jose Ángel Concha Carrasco
+ * @author Juan Pablo García Plaza Pérez - José Ángel Concha Carrasco
  */
 public class Lector {
 
