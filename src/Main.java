@@ -10,20 +10,33 @@ import java.util.Iterator;
 public class Main {
 
     /**
-     * TODO Documentar el algoritmo de cálculo de caminos mínimos
+     * Calcula la matriz de cierre transitivo del grafo de entrada aplicando el algoritmo de Floyd
      *
-     * @param grafoEntrada Grafo que represente el mapa de carreteras
-     * @param cInicial     Nombre de la ciudad de partida
-     * @param cFinal       Nombre de la ciudad de destino
+     * @param grafoEntrada Grafo de entrada
+     * @param P            Matriz de actualizaciones sobre la matriz de cierre transitivo
+     * @return Matriz de cierre transitivo
+     */
+    private static float[][] calcularCierreTransitivo(GrafoNDVIndexCad grafoEntrada, int[][] P) {
+        return new float[0][];
+    }
+
+    /**
+     * Calcula la secuencia de vértioes que conforman el camíno mínimo entre dos vértices
+     * aplicando el algoritmo de recuperación de caminos de Floyd
+     *
+     * @param mCierreT Matriz de cierre transitivo que ocntiene los caminos mínimos
+     * @param P        Matriz de actualizaciones de la matriz de cierre transitivo
+     * @param cInicial Nombre de la ciudad de partida
+     * @param cFinal   Nombre de la ciudad de destino
      * @return Cadena con el recorrido más corto y su longitud
      */
-    private static String calcularMinimoCamino(GrafoNDVIndexCad grafoEntrada, String cInicial, String cFinal) {
+    private static String calcularMinimoCamino(float[][] mCierreT, int[][] P, String cInicial, String cFinal) {
         // TODO - implement Main.calcularMinimoCamino
         return null;
     }
 
     /**
-     * TODO Documentar el algoritmo de cálculo de árboles de expansión mínimos
+     * Calcula el árbol de expansión mínimo del grafo de entrada mediante el algoritmo de Prim
      *
      * @param grafoEntrada Grafo del que calcular su árbol de expasión mínimo
      * @param grafoRes     Árbol de expansión mínimo del grafo de entrada
@@ -52,7 +65,7 @@ public class Main {
                     camino = grafoEntrada.obtenerValorArco(u, v);
 
                     if (camino > grafoEntrada.obtenerValorArco(u, minimo))
-                        minimo = v;                                 // Actualiza el vértice mínimo
+                        minimo = v;                             // Actualiza el vértice mínimo
                 }
             }
             camino = grafoEntrada.obtenerValorArco(u, minimo);  // Temporal del camino mínimo
@@ -72,6 +85,8 @@ public class Main {
         int n;                                                  // Número de ciudades del mapa
         int d;                                                  // Número de carreteras del mapa
         int p;                                                  // Número de preguntas
+        int[][] P;                                              // Matriz de actualizaciones sobre la mCierreT
+        float[][] mCierreT;                                     // Matriz de cierre transitivo
         String[][] preguntas;                                   // Campos de las preguntas sobre caminos mínimos
         GrafoNDVIndexCad mapaCarreteras;                        // Grafo del mapa de carreteras (vértices -> ciudades)
         GrafoNDVIndexCad minimasCarreteras;                     // Grafo con las carreteras mínimas para conectar toda ciudad
@@ -96,11 +111,13 @@ public class Main {
 
         p = lector.leerNumero();                                // Lee el número de preguntas acerca de caminos mínimos
         preguntas = new String[p][];                            // Inicializa la matriz de preguntas
+        P = new int[mapaCarreteras.getOrden()][];               // Inicializa la matriz P de actualizaciones
+        mCierreT = calcularCierreTransitivo(mapaCarreteras, P); // Calcula la matriz de cierre transitivo del mapa
         // Datos de la línea: 2 ciudades
         for (int i = 0; i < p; i++) {
             preguntas[i] = lector.leerLinea().split(" "); // Divide la línea en sus campos
             // Calcula el camíno mínimo y lo escribe
-            escritor.escribirLinea(calcularMinimoCamino(mapaCarreteras, preguntas[i][0], preguntas[i][1]));
+            escritor.escribirLinea(calcularMinimoCamino(mCierreT, P, preguntas[i][0], preguntas[i][1]));
         }
         escritor.escribirLinea("");                             // Nueva línea
 
@@ -110,12 +127,13 @@ public class Main {
         minimasCarreteras = new GrafoNDVIndexCad(mapaCarreteras.getOrden());
         // Escribe el coste de reparar las mínimas carreteras
         escritor.escribirLinea(String.valueOf(calcularExpansionMinima(mapaCarreteras, minimasCarreteras)));
-        // TODO Escribir el coste total de rehabilitación de carreteras
 
+        P = new int[minimasCarreteras.getOrden()][];               // Reinicializa la matriz P para el nuevo mapa
+        mCierreT = calcularCierreTransitivo(minimasCarreteras, P); // Calcula la matriz de cierre transitivo del nuevo mapa
         // Calcula los caminos mínimos a partir del nuevo mapa de carreteras
         for (int i = 0; i < p; i++) {
             // Calcula el camíno mínimo y lo escribe
-            escritor.escribirLinea(calcularMinimoCamino(minimasCarreteras, preguntas[i][0], preguntas[i][1]));
+            escritor.escribirLinea(calcularMinimoCamino(mCierreT, P, preguntas[i][0], preguntas[i][1]));
         }
     }
 

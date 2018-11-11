@@ -91,7 +91,7 @@ public class GrafoNDVIndexCad extends GrafoNDV {
      * @param indice Índice asociado a un vértice del grafo y una ciudad
      * @return Cadena equivalente al índice indicado
      */
-    private String cadenaEquivalente(int indice) {
+    public String cadenaEquivalente(int indice) {
         return diccionarioCadenas.get(indice);
     }
 
@@ -101,7 +101,7 @@ public class GrafoNDVIndexCad extends GrafoNDV {
      * @param cadena Cadena mapeada a un vértice del grafo
      * @return El índice numérico mapeado a una cadena
      */
-    private int indiceEquivalente(String cadena) {
+    public int indiceEquivalente(String cadena) {
         return diccionarioCadenas.indexOf(cadena);
     }
 
