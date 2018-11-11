@@ -20,12 +20,21 @@ public class Escritor {
     }
 
     /**
+     * Escribe una cadena en el flujo estándar
+     *
+     * @param cadena Cadena a imprimir
+     */
+    public void escribirCadena(String cadena) {
+        salidaEstandar.print(cadena);
+    }
+
+    /**
      * Escribe una línea al flujo de salida estándar
      *
      * @param linea Línea a escribir
      */
     public void escribirLinea(String linea) {
-        salidaEstandar.println(linea);
+        escribirCadena(linea + "\n");
     }
 
 }
