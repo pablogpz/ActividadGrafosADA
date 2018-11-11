@@ -57,16 +57,16 @@ public class GrafoNDVIndexCad extends GrafoNDV {
      * @param vertice Vértice del que obtener sus adyacentes
      * @return Vértices adyacentes al vértice indicado
      */
-    public int[] adyacentes(String vertice) {
-        return new int[0];
+    public String[] adyacentes(String vertice) {
+        return new String[0];
     }
 
     /**
      * @return Devuelve el conjunto de vértices del grafo
      */
-    public int[] vertices() {
-        // TODO - implement GrafoNDVIndexCad.vertices
-        return new int[0];
+    public String[] verticesCadena() {
+        // TODO - implement GrafoNDVIndexCad.verticesCadena
+        return new String[0];
     }
 
     /**
