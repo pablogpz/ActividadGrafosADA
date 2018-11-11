@@ -7,17 +7,6 @@
 public class Main {
 
     /**
-     * TODO Documentar el algoritmo de cálculo de árboles de expansión mínimos
-     *
-     * @param grafoEntrada Grafo del que calcular su árbol de expasión mínimo
-     * @return Árbol de expasión mínimo
-     */
-    private static GrafoNDVIndexCad calcularExpansionMinima(GrafoNDVIndexCad grafoEntrada) {
-        // TODO - implement Main.calcularExpansionMinima
-        return null;
-    }
-
-    /**
      * TODO Documentar el algoritmo de cálculo de caminos mínimos
      *
      * @param grafoEntrada Grafo que represente el mapa de carreteras
@@ -30,6 +19,18 @@ public class Main {
         return null;
     }
 
+    /**
+     * TODO Documentar el algoritmo de cálculo de árboles de expansión mínimos
+     *
+     * @param grafoEntrada Grafo del que calcular su árbol de expasión mínimo
+     * @param grafoRes     Árbol de expansión mínimo del grafo de entrada
+     * @return Suma de los valores de las etiquetas del árbol de expasión mínimo
+     */
+    private static float calcularExpansionMinima(GrafoNDVIndexCad grafoEntrada,
+                                                 GrafoNDVIndexCad grafoRes) {
+        return 0;
+    }
+
     public static void main(String[] args) {
         Lector lector = new Lector();                           // Lector del flujo de entrada estándar
         Escritor escritor = new Escritor();                     // Escritor del flujo de salida estándar
@@ -39,6 +40,7 @@ public class Main {
         int p;                                                  // Número de preguntas
         String[][] preguntas;                                   // Campos de las preguntas sobre caminos mínimos
         GrafoNDVIndexCad mapaCarreteras;                        // Grafo del mapa de carreteras (vértices -> ciudades)
+        GrafoNDVIndexCad minimasCarreteras;                     // Grafo con las carreteras mínimas para conectar toda ciudad
 
         // *** LECTURA DE DATOS ***
 
@@ -71,13 +73,15 @@ public class Main {
         // *** PROBLEMA 2 ***
 
         // Convierte el mapa de carreteras tal que todas las ciudades estén conectadas y el coste de repararlas sea mínimo
-        mapaCarreteras = calcularExpansionMinima(mapaCarreteras);
+        minimasCarreteras = new GrafoNDVIndexCad(mapaCarreteras.getOrden());
+        // Escribe el coste de reparar las mínimas carreteras
+        escritor.escribirLinea(String.valueOf(calcularExpansionMinima(mapaCarreteras, minimasCarreteras)));
         // TODO Escribir el coste total de rehabilitación de carreteras
 
         // Calcula los caminos mínimos a partir del nuevo mapa de carreteras
         for (int i = 0; i < p; i++) {
             // Calcula el camíno mínimo y lo escribe
-            escritor.escribirLinea(calcularMinimoCamino(mapaCarreteras, preguntas[i][0], preguntas[i][1]));
+            escritor.escribirLinea(calcularMinimoCamino(minimasCarreteras, preguntas[i][0], preguntas[i][1]));
         }
     }
 
