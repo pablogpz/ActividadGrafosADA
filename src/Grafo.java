@@ -1,7 +1,7 @@
 /**
  * Interfaz que define las operaciones fundamentales de cualquier grafo implementado mediante matriz de adyacencia.
  *
- * @author Juan Pablo García Plaza Pérez - Jose Ángel Concha Carrasco
+ * @author Juan Pablo García Plaza Pérez - José Ángel Concha Carrasco
  */
 public interface Grafo {
 
@@ -25,6 +25,15 @@ public interface Grafo {
      * @param valor   Valor de la etiqueta del arco, si debe existir
      */
     void insertarArco(int vInicio, int vFin, float valor);
+
+    /**
+     * Devuelve el valor del arco formado por dos vértices del grafo.
+     *
+     * @param vInicio Vértice inicial del arco
+     * @param vFin    Vértice final del arco
+     * @return el valor del arco formado por ambos vértices
+     */
+    float obtenerArco(int vInicio, int vFin);
 
     /**
      * Borra un vértice del grafo. Puede provocar el borrado de un arco si el vértice a borrar tiene un grado mayor que 0
