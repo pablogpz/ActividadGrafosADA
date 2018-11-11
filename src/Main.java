@@ -17,7 +17,23 @@ public class Main {
      * @return Matriz de cierre transitivo
      */
     private static float[][] calcularCierreTransitivo(GrafoNDVIndexCad grafoEntrada, int[][] P) {
-        return new float[0][];
+        float[][] mCierreT = grafoEntrada.getMatrizAdy();       // Matriz de cierre transitivo
+        int orden = grafoEntrada.getOrden();                    // Orden de la matriz de adyacencia del grafo
+        float caminoNuevo;                                      // Longitud del camino formado por [i,k] y [k,j]
+
+        for (int k = 0; k < orden; k++) {
+            for (int i = 0; i < orden; i++) {
+                for (int j = 0; j < orden; j++) {
+                    caminoNuevo = mCierreT[i][k] + mCierreT[k][j];
+                    if (caminoNuevo < mCierreT[i][j]) {         // Actualiza el camino si el nuevo es menor
+                        mCierreT[i][j] = caminoNuevo;
+                        P[i][j] = k;                            // Actualiza la matriz P
+                    }
+                }
+            }
+        }
+
+        return mCierreT;
     }
 
     /**
