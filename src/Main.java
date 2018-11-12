@@ -8,7 +8,7 @@ import java.util.ArrayList;
  */
 public class Main {
 
-    private static final int P_NULO = -1;
+    private static final int P_NULO = -1;                       // Valor nulo de la matriz P de actualiación
 
     /**
      * Calcula la matriz de cierre transitivo del grafo de entrada aplicando el algoritmo de Floyd
