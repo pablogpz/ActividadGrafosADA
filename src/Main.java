@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Iterator;
 
 /**
  * Clase principal que contiene el punto de entrada al programa.
@@ -75,35 +74,37 @@ public class Main {
      */
     private static float calcularExpansionMinima(GrafoNDVIndexCad grafoEntrada,
                                                  GrafoNDVIndexCad grafoRes) {
-        float camino;                                           // Etiqueta mínima entre dos vértices
-        float sumaEtiquetas = 0;                                // Suma total del valor de las etiquetas
         ArrayList<String> cjtoVertices = new ArrayList<>();     // Cjto de vértices del grafo resultado
         String[] verticesEntrada = grafoEntrada.verticesCadena();// Cjto de vértices del grafo de entrada
         String[] adyacentes;                                    //Adyacentes a cada vértice seleccionado
-        String u;                                               // Vértice actual
-        String v;                                               // Vértice adyacente
+        String uMinimo = null;                                  // Vértice inicial que hizo el arco mínimo
+        String vMinimo = null;                                  // Vértice final que hizo el arco mínimo
+        float caminoMinimo;                                     // Camino mínimo en cada exploración
+        float sumaEtiquetas = 0;                                // Suma total del valor de las etiquetas
 
         cjtoVertices.add(verticesEntrada[0]);                   // Empieza por el primer vértice
-        Iterator<String> it = cjtoVertices.iterator();
         while (cjtoVertices.size() < verticesEntrada.length) {
-            u = it.next();                                      // Actualiza el vértice actual
-            adyacentes = grafoEntrada.adyacentes(u);            // Obtiene sus adyacentes
+            caminoMinimo = MatrizAdyacencia.ELEMENTO_VACIO;     // Reinicializa al valor nulo el camino mínimo
 
-            String minimo = null;                               // Vértice final que hace el arco mínimo
-            for (String adyacente : adyacentes) {               // Busca el camino mínimo con el vértice actual
-                v = adyacente;
-                if (!cjtoVertices.contains(v)) {
-                    camino = grafoEntrada.obtenerValorArco(u, v);
+            for (String vertice : cjtoVertices) {               // Para cada vértice del 'cjtoVertices', explora sus adyacentes
+                adyacentes = grafoEntrada.adyacentes(vertice);  // Obtiene los adyacentes de cada vértice
 
-                    if (camino > grafoEntrada.obtenerValorArco(u, minimo))
-                        minimo = v;                             // Actualiza el vértice mínimo
+                for (String adyacente : adyacentes) {           // Para cada adyacente del vértice actual
+                    if (!cjtoVertices.contains(adyacente)) {    // Comprueba que el adyacente no esté en 'cjtoVertices'
+                        // Actualiza los vértices y camino mínimo si procede
+                        if (grafoEntrada.obtenerValorArco(vertice, adyacente) < caminoMinimo) {
+                            uMinimo = vertice;
+                            vMinimo = adyacente;
+                            caminoMinimo = grafoEntrada.obtenerValorArco(uMinimo, vMinimo);
+                        }
+                    }
                 }
             }
-            camino = grafoEntrada.obtenerValorArco(u, minimo);  // Temporal del camino mínimo
 
-            grafoRes.insertarArco(u, minimo, camino);           // Añade el camino al grafo resultado
-            cjtoVertices.add(minimo);                           // Añade el vértice elegido a los visitados
-            sumaEtiquetas += camino;                            // Actualiza el acumulador
+            // Añade el camino al grafo resultado
+            grafoRes.insertarArco(uMinimo, vMinimo, caminoMinimo);
+            cjtoVertices.add(vMinimo);                         // Añade el vértice elegido a los visitados
+            sumaEtiquetas += caminoMinimo;                     // Actualiza el acumulador
         }
 
         return sumaEtiquetas;
@@ -161,12 +162,15 @@ public class Main {
             escritor.escribirLinea(String.valueOf(mCierreT[mapaCarreteras.indiceEquivalente(preguntas[i][0])]
                     [mapaCarreteras.indiceEquivalente(preguntas[i][1])])); // Escribe la longitud del camino
         }
-        escritor.escribirLinea("");                             // Nueva línea
+        escritor.escribirCadena("\n");                          // Nueva línea
 
         // *** PROBLEMA 2 ***
 
         // Convierte el mapa de carreteras tal que todas las ciudades estén conectadas y el coste de repararlas sea mínimo
         minimasCarreteras = new GrafoNDVIndexCad(mapaCarreteras.getOrden());
+        // Copia el diccionario de nombres de ciudades en el nuevo grafo
+        minimasCarreteras.setDiccionarioCadenas(mapaCarreteras.getDiccionarioCadenas());
+
         // Escribe el coste de reparar las mínimas carreteras
         escritor.escribirLinea(String.valueOf(calcularExpansionMinima(mapaCarreteras, minimasCarreteras)));
 
@@ -176,11 +180,16 @@ public class Main {
                 P[i][j] = P_NULO;
             }
         }
+
         mCierreT = calcularCierreTransitivo(minimasCarreteras, P); // Calcula la matriz de cierre transitivo del nuevo mapa
         // Calcula los caminos mínimos a partir del nuevo mapa de carreteras
         for (int i = 0; i < p; i++) {
+            escritor.escribirCadena(preguntas[i][0] + " ");     // Escribe la ciudad de partida
             // Calcula el camíno mínimo y lo escribe
-//            escritor.escribirLinea(calcularMinimoCamino(mCierreT, P, preguntas[i][0], preguntas[i][1], minimasCarreteras));
+            calcularMinimoCamino(mCierreT, P, preguntas[i][0], preguntas[i][1], minimasCarreteras);
+            escritor.escribirCadena(preguntas[i][1] + " ");     // Escribe la ciudad destino
+            escritor.escribirLinea(String.valueOf(mCierreT[minimasCarreteras.indiceEquivalente(preguntas[i][0])]
+                    [minimasCarreteras.indiceEquivalente(preguntas[i][1])])); // Escribe la longitud del camino
         }
     }
 

@@ -106,4 +106,20 @@ public class GrafoNDVIndexCad extends GrafoNDV {
         return diccionarioCadenas.indexOf(cadena);
     }
 
+    /**
+     * @return Diccionario de cadenas mapeadas
+     */
+    public ArrayList<String> getDiccionarioCadenas() {
+        return diccionarioCadenas;
+    }
+
+    /**
+     * Actualiza el diccionario de cadenas con un nuevo diccionario
+     *
+     * @param dic Nuevo diccionario de cadenas
+     */
+    public void setDiccionarioCadenas(ArrayList<String> dic) {
+        diccionarioCadenas = dic;
+    }
+
 }

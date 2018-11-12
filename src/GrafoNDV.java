@@ -85,9 +85,10 @@ public class GrafoNDV extends MatrizAdyacencia implements Grafo {
     @Override
     public int[] vertices() {
         int[] acumulados = new int[getOrden()];                         // Vector de vertices (orden) de la matriz de adyacencia
-        for (int i = 1; i <= getOrden(); i++) {                         // Inicialización del los vértices con su valor numérico
+        for (int i = 0; i < getOrden(); i++) {                          // Inicialización del los vértices con su valor numérico
             acumulados[i] = i;
         }
+
         return acumulados;
     }
 
@@ -109,11 +110,11 @@ public class GrafoNDV extends MatrizAdyacencia implements Grafo {
      */
     @Override
     public int[] adyacentes(int vertice) {
-
         ArrayList<Integer> vAdyacentes = new ArrayList<>();             // Colección auxiliar para calcular el nº de ady
 
-        for (int i = 1; i <= getOrden(); i++) {                         // Comprueba si [i] es adyacente
-            if (obtenerValorCelda(vertice, i) > 0) {                    // Vertices adyacentes : valor del arco > 0
+        for (int i = 0; i < getOrden(); i++) {                          // Comprueba si [i] es adyacente
+            if (obtenerValorCelda(vertice, i) > 0 &&                    // Vertices adyacentes
+                    obtenerValorCelda(vertice, i) < MatrizAdyacencia.ELEMENTO_VACIO) {
                 vAdyacentes.add(i);
             }
         }
