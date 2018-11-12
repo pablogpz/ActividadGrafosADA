@@ -35,7 +35,7 @@ public class Main {
                 for (int j = i + 1; j < orden; j++) {
                     caminoNuevo = mCierreT[i][k] + mCierreT[k][j];
                     if (caminoNuevo < mCierreT[i][j]) {             // Actualiza el camino si el nuevo es menor
-                        // posiciones [i,j] y [j,i] son simétricas
+                        // Posiciones [i,j] y [j,i] son simétricas
                         mCierreT[i][j] = caminoNuevo;
                         mCierreT[j][i] = caminoNuevo;
                         P[i][j] = k;                                // Actualiza la matriz P
@@ -80,7 +80,7 @@ public class Main {
                                                  GrafoNDVIndexCad grafoRes) {
         ArrayList<String> cjtoVertices = new ArrayList<>();         // Cjto de vértices del grafo resultado
         String[] verticesEntrada = grafoEntrada.verticesCadena();   // Cjto de vértices del grafo de entrada
-        String[] adyacentes;                                        //Adyacentes a cada vértice seleccionado
+        String[] adyacentes;                                        // Adyacentes a cada vértice seleccionado
         String uMinimo = null;                                      // Vértice inicial que hizo el arco mínimo
         String vMinimo = null;                                      // Vértice final que hizo el arco mínimo
         float caminoMinimo;                                         // Camino mínimo en cada exploración
