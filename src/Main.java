@@ -29,13 +29,17 @@ public class Main {
             }
         }
 
+        // Construye la matriz de cierre transitivo hasta el número de vértices (orden de la matriz de ady)
         for (int k = 0; k < orden; k++) {
             for (int i = 0; i < orden; i++) {
-                for (int j = 0; j < orden; j++) {
+                for (int j = i + 1; j < orden; j++) {
                     caminoNuevo = mCierreT[i][k] + mCierreT[k][j];
                     if (caminoNuevo < mCierreT[i][j]) {             // Actualiza el camino si el nuevo es menor
+                        // posiciones [i,j] y [j,i] son simétricas
                         mCierreT[i][j] = caminoNuevo;
+                        mCierreT[j][i] = caminoNuevo;
                         P[i][j] = k;                                // Actualiza la matriz P
+                        P[j][i] = k;
                     }
                 }
             }
