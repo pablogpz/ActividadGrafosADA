@@ -77,10 +77,10 @@ public class GrafoNDVIndexCad extends GrafoNDV {
      * @return Devuelve el conjunto de vértices del grafo
      */
     public String[] verticesCadena() {
-        int[] verticesNumericos = vertices();                                           // Obtenemos los vértices (númericos)
-        String[] verticesString = new String[verticesNumericos.length];                 // Creamos un vector de igual tamano
+        int[] verticesNumericos = vertices();                                           // Obtiene los vértices (númericos)
+        String[] verticesString = new String[verticesNumericos.length];                 // Crea un vector de igual tamano
 
-        for (int i = 0; i < verticesNumericos.length; i++)                              // Convertimos cada índice a String
+        for (int i = 0; i < verticesNumericos.length; i++)                              // Convierte cada índice a String
             verticesString[i] = cadenaEquivalente(verticesNumericos[i]);
 
         return verticesString;

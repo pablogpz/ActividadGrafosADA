@@ -5,6 +5,7 @@
  *
  * @author Juan Pablo García Plaza Pérez - José Ángel Concha Carrasco
  */
+
 public class MatrizAdyacencia {
 
     private float[][] matrizAdy;                                         // Matriz de adayacencia de números reales.
@@ -19,11 +20,11 @@ public class MatrizAdyacencia {
      * @param orden Orden de la matriz a inicializar
      */
     public MatrizAdyacencia(int orden) {
-        this.orden = orden;                               // Guarda el orden
-        matrizAdy = new float[orden][orden];              // Reserva de espacio para la matriz de orden 'orden'
+        this.orden = orden;                                              // Guarda el orden
+        matrizAdy = new float[orden][orden];                             // Reserva de espacio para la matriz de orden 'orden'
 
-        for (int i = 0; i < orden; i++) {                 // Asignamos a todas las celdas el valor de ELEMENTO_VACIO,
-            for (int j = 0; j < orden; j++) {             // salvo a la diagonal principal de la matriz.
+        for (int i = 0; i < orden; i++) {                                // Asignamos a todas las celdas el valor de ELEMENTO_VACIO,
+            for (int j = 0; j < orden; j++) {                            // Salvo a la diagonal principal de la matriz
                 if (i == j)
                     matrizAdy[i][j] = ELEMENTO_NULO;
                 else
@@ -33,7 +34,8 @@ public class MatrizAdyacencia {
     }
 
     /**
-     * Cambia el valor de una celda de la matriz. Es una operacióin destructiva, sobreescribe el antiguo valor
+     * Cambia el valor de una celda de la matriz. Es una operacióin destructiva,
+     * sobreescribe el antiguo valor
      *
      * @param valor Valor a insertar
      */
@@ -51,8 +53,8 @@ public class MatrizAdyacencia {
     }
 
     /**
-     * Inicializa la fila y columna equivalente al índice doble [indice][indice], incrementando el orden de la matriz
-     * en una unidad.
+     * Inicializa la fila y columna equivalente al índice doble [indice][indice],
+     * incrementando el orden de la matriz en una unidad
      *
      * @param indice indice que indique la fila y columna a inicializar
      */
@@ -60,7 +62,8 @@ public class MatrizAdyacencia {
     }
 
     /**
-     * Rellena con el valor nulo un índice conjunto de fila y columna, decrementando en 1 el orden de la matriz
+     * Rellena con el valor nulo un índice conjunto de fila y columna,
+     * decrementando en 1 el orden de la matriz
      *
      * @param indice Indice a borrar
      */
@@ -68,7 +71,8 @@ public class MatrizAdyacencia {
     }
 
     /**
-     * Modifica el orden de la matriz. Un incremento positivo incrementa el orden y un incremento negativo lo decrementa
+     * Modifica el orden de la matriz. Un incremento positivo incrementa el orden y
+     * un incremento negativo lo decrementa
      *
      * @param variacion Valor en el que variar el orden de la matriz
      */

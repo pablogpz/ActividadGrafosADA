@@ -84,8 +84,8 @@ public class GrafoNDV extends MatrizAdyacencia implements Grafo {
      */
     @Override
     public int[] vertices() {
-        int[] acumulados = new int[getOrden()];                         // Vector de vertices (orden) de la matriz de adyacencia
-        for (int i = 0; i < getOrden(); i++) {                          // Inicialización del los vértices con su valor numérico
+        int[] acumulados = new int[getOrden()];                        // Vector de vertices (orden) de la matriz de adyacencia
+        for (int i = 0; i < getOrden(); i++) {                         // Inicialización del los vértices con su valor numérico
             acumulados[i] = i;
         }
 
@@ -110,18 +110,18 @@ public class GrafoNDV extends MatrizAdyacencia implements Grafo {
      */
     @Override
     public int[] adyacentes(int vertice) {
-        ArrayList<Integer> vAdyacentes = new ArrayList<>();             // Colección auxiliar para calcular el nº de ady
+        ArrayList<Integer> vAdyacentes = new ArrayList<>();            // Colección auxiliar para calcular el nº de ady
 
-        for (int i = 0; i < getOrden(); i++) {                          // Comprueba si [i] es adyacente
-            if (obtenerValorCelda(vertice, i) > 0 &&                    // Vertices adyacentes
+        for (int i = 0; i < getOrden(); i++) {                         // Comprueba si [i] es adyacente
+            if (obtenerValorCelda(vertice, i) > 0 &&                   // Vertices adyacentes
                     obtenerValorCelda(vertice, i) < MatrizAdyacencia.ELEMENTO_VACIO) {
                 vAdyacentes.add(i);
             }
         }
 
-        int[] vertices = new int[vAdyacentes.size()];                   // Vector de vertices adyacentes final
+        int[] vertices = new int[vAdyacentes.size()];                  // Vector de vertices adyacentes final
 
-        for (int i = 0; i < vAdyacentes.size(); i++) {                  // Paso de la estructura auxiliar a la final
+        for (int i = 0; i < vAdyacentes.size(); i++) {                 // Paso de la estructura auxiliar a la final
             vertices[i] = vAdyacentes.get(i);
         }
 

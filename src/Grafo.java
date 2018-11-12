@@ -1,8 +1,9 @@
 /**
- * Interfaz que define las operaciones fundamentales de cualquier grafo implementado mediante matriz de adyacencia.
+ * Interfaz que define las operaciones fundamentales de cualquier grafo implementado mediante matriz de adyacencia
  *
  * @author Juan Pablo García Plaza Pérez - José Ángel Concha Carrasco
  */
+
 public interface Grafo {
 
     /**
@@ -36,7 +37,8 @@ public interface Grafo {
     float obtenerArco(int vInicio, int vFin);
 
     /**
-     * Borra un vértice del grafo. Puede provocar el borrado de un arco si el vértice a borrar tiene un grado mayor que 0
+     * Borra un vértice del grafo. Puede provocar el borrado de un arco si el vértice a borrar tiene
+     * un grado mayor que 0
      *
      * @param vertice Vértice a borrar
      */
