@@ -37,7 +37,9 @@ public class MatrizAdyacencia {
      * Cambia el valor de una celda de la matriz. Es una operacióin destructiva,
      * sobreescribe el antiguo valor
      *
-     * @param valor Valor a insertar
+     * @param fila    Fila
+     * @param columna Columna
+     * @param valor   Valor a insertar
      */
     protected void modificarCelda(int fila, int columna, float valor) {
         matrizAdy[fila][columna] = valor;
