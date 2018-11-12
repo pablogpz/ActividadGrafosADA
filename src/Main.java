@@ -113,7 +113,7 @@ public class Main {
     /**
      * Rellena una matriz con el elemento indicado
      *
-     * @param matriz Matriz de enteros  a inicializar
+     * @param matriz Matriz de enteros a inicializar
      * @param valor  Elemento con el que inicializar las celdas de la matriz
      */
     private static void inicializarMatri(int[][] matriz, int valor) {
