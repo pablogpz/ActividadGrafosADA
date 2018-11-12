@@ -120,7 +120,7 @@ public class Main {
      * @param matriz Matriz de enteros a inicializar
      * @param valor  Elemento con el que inicializar las celdas de la matriz
      */
-    private static void inicializarMatri(int[][] matriz, int valor) {
+    private static void inicializarMatriz(int[][] matriz, int valor) {
         for (int i = 0; i < matriz.length; i++) {
             for (int j = 0; j < matriz.length; j++) {
                 matriz[i][j] = valor;
@@ -165,7 +165,7 @@ public class Main {
         preguntas = new String[p][];                                // Inicializa la matriz de preguntas
         // Inicializa la matriz P de actualizaciones con un valor nulo
         P = new int[mapaCarreteras.getOrden()][mapaCarreteras.getOrden()];
-        inicializarMatri(P, Main.P_NULO);
+        inicializarMatriz(P, Main.P_NULO);
 
         mCierreT = calcularCierreTransitivo(mapaCarreteras, P);     // Calcula la matriz de cierre transitivo del mapa
         // Datos de la línea: 2 ciudades
@@ -194,7 +194,7 @@ public class Main {
         escritor.escribirLinea(String.valueOf(calcularExpansionMinima(mapaCarreteras, minimasCarreteras)));
 
         // Reinicializa la matriz P para el nuevo mapa
-        inicializarMatri(P, Main.P_NULO);
+        inicializarMatriz(P, Main.P_NULO);
 
         mCierreT = calcularCierreTransitivo(minimasCarreteras, P);  // Calcula la matriz de cierre transitivo del nuevo mapa
         // Calcula los caminos mínimos a partir del nuevo mapa de carreteras
